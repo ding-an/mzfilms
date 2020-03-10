@@ -6,7 +6,6 @@
 
 <script>
 
-
 export default {
   name: 'App',
   components: {
@@ -15,5 +14,6 @@ export default {
 </script>
 
 <style>
-
+  @import './assets/css/border.css';
+  @import './assets/css/reset.css';
 </style>
