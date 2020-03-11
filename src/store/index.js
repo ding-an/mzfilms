@@ -6,7 +6,12 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  currentCity: 110100
+  currentCity: {
+    cityId: '110100',
+    name: '北京',
+    pinyin: 'beijing'
+  },
+  films: []
 }
 
 export default new Vuex.Store({

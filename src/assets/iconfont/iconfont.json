@@ -1,0 +1,51 @@
+{
+  "id": "1684397",
+  "name": "maizuo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "33515",
+      "name": "profile",
+      "font_class": "profile",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "1321515",
+      "name": "iconfont",
+      "font_class": "iconfont",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "5924468",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "6170361",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "6204091",
+      "name": "关  闭",
+      "font_class": "guanbi",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "10392609",
+      "name": "短信",
+      "font_class": "duanxin",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    }
+  ]
+}

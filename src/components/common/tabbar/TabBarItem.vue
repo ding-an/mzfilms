@@ -13,7 +13,10 @@ export default {
         }
     },
     props: {
-        path: String,
+        path: {
+            type: String,
+            default: ''
+        },
         itemColor: {
             type: String,
             default: 'red'
@@ -22,7 +25,7 @@ export default {
     methods: {
         tabBarClick () {
             if(this.$route.path === this.path) return;
-            this.$router.replace(this.path)
+            this.$router.replace(this.path);
         }
     },
     computed: {
@@ -40,5 +43,8 @@ export default {
     height: 49px;
     line-height: 49px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>

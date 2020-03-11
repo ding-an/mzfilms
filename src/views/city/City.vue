@@ -2,8 +2,8 @@
     <div id="city">
         <!-- 顶部导航栏 -->
         <nav-bar>
-            <span slot="left">×</span>
-            <div slot="center">当前城市 -</div>
+            <span class="iconfont" slot="left">&#xe608;</span>
+            <div slot="center">当前城市-{{currentCity.name}}</div>
         </nav-bar>
         <!-- 搜索城市 -->
         <search 
@@ -24,7 +24,7 @@
                         v-for="city in hotCities" 
                         :key="city.cityId" 
                         :cityName="city.name"
-                        @click.native="selectCity(city.cityId)"/>
+                        @click.native="selectCity(city)"/>
                 </div>
             </div>
             <!-- A-Z渲染 -->
@@ -34,7 +34,7 @@
                     <div class="citySelector"
                         v-for="city in cities"
                         :key="city.cityId"
-                        @click="selectCity(city.cityId)">{{city.name}}</div>
+                        @click="selectCity(city)">{{city.name}}</div>
                 </div>
             </div>
             <!-- 侧边栏 -->
@@ -53,7 +53,7 @@
             <div class="citySelector"
                         v-for="city in searchCities"
                         :key="city.cityId"
-                        @click="selectCity(city.cityId)">{{city.name}}</div>
+                        @click="selectCity(city)">{{city.name}}</div>
         </div>
         
     </div>
@@ -120,12 +120,10 @@ export default {
             document.body.scrollTop ? 
             document.body.scrollTop = scrollTop : document.documentElement.scrollTop = scrollTop;
         },
-        //选择当前城市ID
-        selectCity (cityId) {
-            this.SET_CURRENT_CITY(cityId)
+        //选择当前城市
+        selectCity (city) {
+            this.SET_CURRENT_CITY(city)
             this.$router.back();
-            console.log(this.currentCity)
-            console.log(this.$route.path)
         },
         //判断输入框是否聚焦
         changeIsInput () {

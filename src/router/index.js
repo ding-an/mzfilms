@@ -10,7 +10,18 @@ const routes = [
   },
   {
     path: '/films',
-    component: () =>import('@/views/films/Films')
+    redirect: '/films/nowPlaying',
+    component: () =>import('@/views/films/Films'),
+    children: [
+      {
+        path: '/films/nowPlaying',
+        component: () => import('@/views/films/nowplaying/NowPlaying')
+      },
+      {
+        path: '/films/comingSoon',
+        component: () => import('@/views/films/comingsoon/ComingSoon')
+      }
+    ]
   },
   {
     path: '/cinemas',

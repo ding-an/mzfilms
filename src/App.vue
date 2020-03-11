@@ -16,4 +16,5 @@ export default {
 <style>
   @import './assets/css/border.css';
   @import './assets/css/reset.css';
+  @import url('./assets/iconfont/iconfont.css');
 </style>

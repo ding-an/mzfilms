@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <div class="searchWrap">
-            <span class="searchImg">搜索</span>
+            <span class="iconfont">&#xe61c;</span>
             <input 
                 class="searchInput" 
                 type="text" 
@@ -56,6 +56,7 @@ export default {
         margin-right: 10px;
     }
     .searchInput {
+        padding-left: 20px;
         border: none;   
         outline: none; /* 聚焦边框 */
     }
