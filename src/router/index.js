@@ -25,7 +25,15 @@ const routes = [
   },
   {
     path: '/cinemas',
-    component: () =>import('@/views/cinemas/Cinemas')
+    component: () => import('@/views/cinemas/Cinemas')
+  },
+  {
+    path: '/cinemas/search',
+    component: () => import('@/views/cinemas/search/Search')
+  },
+  {
+    path: '/cinemas/:cinemaId/film',
+    component: () => import('@/views/cinemas/film/Film')
   },
   {
     path: '/info',

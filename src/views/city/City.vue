@@ -2,15 +2,16 @@
     <div id="city">
         <!-- 顶部导航栏 -->
         <nav-bar>
-            <span class="iconfont" slot="left">&#xe608;</span>
+            <span class="iconfont" slot="left" @click="$router.back()">&#xe608;</span>
             <div slot="center">当前城市-{{currentCity.name}}</div>
         </nav-bar>
         <!-- 搜索城市 -->
         <search 
-            @changeIsInput='changeIsInput' 
-            @getInputValue='getInputValue' 
+            @changeIsInput='changeIsInput'
             @cancelInput='cancelInput'
-            :isShow='isInput' />
+            @getInputValue='getInputValue' 
+            :isShow='isInput'
+            placeHolder='输入城市名或拼音' />
         <div v-if="!isInput">
             <!-- 中间 -->
             <div class="recommend">
@@ -131,7 +132,7 @@ export default {
         },
         //判断输入框是否失焦
         cancelInput () {
-            this.isInput = false
+            this.isInput = false;
         },
         //拿到input框的值,筛选搜索城市
         getInputValue (value) {

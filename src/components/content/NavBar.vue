@@ -1,6 +1,6 @@
 <template>
     <div class="navbar">
-        <div class="left" @click="backPage">
+        <div class="left">
             <slot name="left"></slot>
         </div>
         <div class="center">
@@ -14,12 +14,7 @@
 
 <script>
 export default {
-    name: 'NavBar',
-    methods: {
-        backPage () {
-            this.$router.back()
-        }
-    }
+    name: 'NavBar'
 }
 </script>
 

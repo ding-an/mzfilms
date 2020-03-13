@@ -5,7 +5,7 @@
             <input 
                 class="searchInput" 
                 type="text" 
-                placeholder="输入城市名或拼音"
+                :placeholder="placeHolder"
                 @focus="changeIsInput"
                 @input="getInputValue"/>
         </div>
@@ -23,6 +23,12 @@ export default {
             type: Boolean,
             default () {
                 return false
+            }
+        },
+        placeHolder: {
+            type: String,
+            default () {
+                return ''
             }
         }
     },

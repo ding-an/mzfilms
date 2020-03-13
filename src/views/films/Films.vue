@@ -1,7 +1,10 @@
 <template>
     <div id="films">
         <router-link to="/city">
-            <div class="currentCity">{{currentCity.name}}</div>
+            <div class="currentCity">
+                {{currentCity.name}}
+                <img src="@/assets/img/click.png" />
+            </div>
         </router-link>
         <swipper :imgs='bannerImg' v-show="isSwipperDisplay"/>
         <mid-tab-bar/>
@@ -72,5 +75,8 @@ export default {
         top: 18px;
         left: 7px;
         z-index: 9;
+    }
+    .currentCity img {
+        width: 6px;
     }
 </style>
