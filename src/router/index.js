@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/cinemas/:cinemaId/film',
-    component: () => import('@/views/cinemas/film/Film')
+    component: () => import('@/views/cinemas/film/CinemaFilm')
   },
   {
     path: '/info',

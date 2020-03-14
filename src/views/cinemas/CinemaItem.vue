@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'CinemaItem',
     props: {
@@ -27,9 +28,12 @@ export default {
         }
     },
     methods: {
+        //点击跳转电影院电影页面
         toCinemaFilm () {
-            this.$router.push(`/cinemas/${this.cinema.cinemaId}/film`)
-        }
+            this.$router.push({
+                path: `/cinemas/${this.cinema.cinemaId}/film`   
+            })
+        },
     }
 }
 </script>
