@@ -84,16 +84,9 @@ export default {
     },
     mounted () {
         this.getInitCinema();
-        this.getInitFilms()/* .then(
-            () => {
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        console.log('bbb');
-                        resolve();
-                    },1000)
-                })
-            }
-        ).then(console.log('aa')) */;
+        this.getInitFilms().then(() => {
+            this.getSchedule(this.currentFilm.showDate[0])
+        });
     },
     methods: {
         //获取初始电影院
@@ -110,13 +103,12 @@ export default {
                 k: 6245444
             }).then(res => {
                 this.films = res.data.data.films;
-                this.getSchedule();
             });
         },
         //获取场次
-        getSchedule (filmId, date) {
+        getSchedule (date) {
             request('mall.film-ticket.schedule.list', {
-                filmId,
+                filmId: this.currentFilm.filmId,
                 cinemaId: this.cinemaId,
                 date,
                 k: 4796576
@@ -125,7 +117,7 @@ export default {
         //改变当前激活的电影
         changeCurrentFilmIndex (index) {
             this.currentFilmIndex = index;
-            this.getSchedule(this.currentFilm.filmId, this.currentFilm.showDate[0]);
+            this.getSchedule(this.currentFilm.showDate[0]);
             this.$refs.filmlist.style.setProperty('--offset', document.body.clientWidth/2 - 45 - index*100 + 'px');
             console.log(document.body.clientWidth);
 
@@ -133,7 +125,7 @@ export default {
         //改变当前激活的日期
         changeCurrentDateIndex (index) {
             this.currentDateIndex = index;
-            this.getSchedule(this.currentFilm.filmId, this.currentFilm.showDate[index])
+            this.getSchedule(this.currentFilm.showDate[index])
 
         },
         //时间戳转换方法
