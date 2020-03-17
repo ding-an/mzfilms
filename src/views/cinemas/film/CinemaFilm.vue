@@ -27,7 +27,7 @@
             </div>
             <img class="arrow" src="@/assets/img/arrow.png" />
         </div>
-        <div class="filmInfo" v-if="currentFilm">
+        <div class="filmInfo" v-if="currentFilm" @click="toFilmInfo">
             <div class="head">
                 <span>{{currentFilm.name}}</span>
                 <span class="grade">{{currentFilm.grade}}分</span>
@@ -55,6 +55,7 @@
 import NavBar from '@/components/content/NavBar'
 
 import request from '@/network/request'
+import formateDate from '@/utils/formateDate'
 
 export default {
     name: 'CinemaFilm',
@@ -79,7 +80,7 @@ export default {
         },
         //时间戳转换
         showDates () {
-            return this.currentFilm.showDate.map(date => this.formateDate(date));
+            return this.currentFilm.showDate.map(date => formateDate(date));
         }
     },
     mounted () {
@@ -128,15 +129,9 @@ export default {
             this.getSchedule(this.currentFilm.showDate[index])
 
         },
-        //时间戳转换方法
-        formateDate (date) {
-            let oDate = new Date(date*1000);
-            let arr = ['一', '二', '三', '四', '五', '六', '日'];
-            return {
-            "W": arr[oDate.getDay()],
-            "M": oDate.getMonth() + 1, // 月份
-            "D": oDate.getDate(), // 日
-    }
+        //跳转电影详情页面
+        toFilmInfo () {
+            this.$router.push(`/film/${this.films[this.currentFilmIndex].filmId}`)
         }
     }
 }

@@ -19,9 +19,6 @@ export default {
     },
     computed: {
         ...mapState(['films'])
-    },
-    mounted () {
-        console.log(this.films)
     }
 }
 </script>

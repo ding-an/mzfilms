@@ -1,5 +1,5 @@
 <template>
-    <div class="filmItem">
+    <div class="filmItem" @click="toFilmInfo">
         <img class="left" :src="film.poster" />
         <div class="mid">
             <div class="filmName">
@@ -11,7 +11,7 @@
                 <span>{{film.grade}}</span>
             </div>
             <div class="filmActor">
-                <span>{{`主演: ${film.actors.map(actor => actor.name).join(' ')}`}}</span>
+                {{`主演: ${film.actors.map(actor => actor.name).join(' ')}`}}
             </div>
             <div class="filmNation">
                 <span>{{`${film.nation} | ${film.runtime}分钟`}}</span>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+
 export default {
     name: 'FilmItem',
     props: {
@@ -38,6 +39,11 @@ export default {
             default () {
                 return []
             }
+        }
+    },
+    methods: {
+        toFilmInfo () {
+            this.$router.push(`/film/${this.film.filmId}`);
         }
     }
 }
@@ -72,10 +78,10 @@ export default {
         line-height: 21px;
         color: #797D82;
     }
-    .filmActor span {
+    .filmActor{
         height: 18px;
         line-height: 18px;
-        text-overflow: ellipsis;
+        overflow: hidden;
         color: #797D82;
     }
     .filmNation {
