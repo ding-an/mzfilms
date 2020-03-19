@@ -1,10 +1,5 @@
-module.export = {
-    modules: {
-        rules: [
-            {test: '/\.css$/', use: ['style-loader', 'css-loader'] }
-        ]
-    },
+module.exports = {
     devServer: {
-        port: 8081 //端口
+        port: 8081,
     }
 }
