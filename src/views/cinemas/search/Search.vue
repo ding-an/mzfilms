@@ -20,6 +20,8 @@
 import CommonSearch from '@/components/content/Search'
 import CinemaItem from '../CinemaItem'
 
+import trim from '@/utils/trim'
+
 export default {
     name: 'Search',
     components: {
@@ -43,9 +45,9 @@ export default {
         },
         //获取输入框的值 
         getInputValue (value) {
-            if(value.length > 0) {
+            if(value.length > 0) {  
                 this.searchCinemas = this.cinemas.filter(
-                cinema => cinema.name.indexOf(value) !== -1 || cinema.address.indexOf(value) !== -1);
+                cinema => cinema.name.indexOf(trim(value)) !== -1 || cinema.address.indexOf(trim(value)) !== -1);
             } else {
                 this.searchCinemas = [];
             }

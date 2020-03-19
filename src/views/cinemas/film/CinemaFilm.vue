@@ -120,7 +120,6 @@ export default {
             this.currentFilmIndex = index;
             this.getSchedule(this.currentFilm.showDate[0]);
             this.$refs.filmlist.style.setProperty('--offset', document.body.clientWidth/2 - 45 - index*100 + 'px');
-            console.log(document.body.clientWidth);
 
         },
         //改变当前激活的日期

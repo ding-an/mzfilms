@@ -67,6 +67,7 @@ import Search from '@/components/content/Search'
 import CityItem from './CityItem'
 
 import request from '@/network/request'
+import trim from '@/utils/trim'
 
 import { mapState, mapMutations } from 'vuex'
 
@@ -138,7 +139,7 @@ export default {
         getInputValue (value) {
             if(value.length > 0) {
                 this.searchCities = this.cities.filter(
-                    city => city.name.indexOf(value) !== -1 || city.pinyin.indexOf(value) !== -1
+                    city => city.name.indexOf(trim(value)) !== -1 || city.pinyin.indexOf(trim(value)) !== -1
                 );
             } else {
                 this.searchCities = [];
