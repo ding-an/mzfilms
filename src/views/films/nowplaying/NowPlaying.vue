@@ -1,5 +1,5 @@
 <template>
-    <div class="nowPalying">
+    <div class="nowPalying" >
         <film-item :film='film' v-for="film in films" :key="film.filmId"></film-item>
     </div>
 </template>
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .nowPalying {
+        margin-bottom: 50px;
+    }
 </style>

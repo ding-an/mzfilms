@@ -60,7 +60,6 @@ export default {
     #swipper {
         height: 192px;
         background-color: #fff;
-        padding-top: 9px;
         border: none;
     }
     #swipper img {

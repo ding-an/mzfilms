@@ -10,7 +10,7 @@
                 <span>观众评分</span>
                 <span>{{film.grade}}</span>
             </div>
-            <div class="filmActor">
+            <div class="filmActor" v-if="film.actors !== undefined && film.actors.length > 0">
                 {{`主演: ${film.actors.map(actor => actor.name).join(' ')}`}}
             </div>
             <div class="filmNation">
@@ -37,7 +37,7 @@ export default {
         film: {
             type: Object,
             default () {
-                return []
+                return {}
             }
         }
     },

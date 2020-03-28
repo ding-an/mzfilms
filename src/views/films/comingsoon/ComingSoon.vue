@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="comingSoon">
         <film-item 
             :film='film'
             :isPlaying = 'false' 
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .comingSoon {
+        margin-bottom: 50px;
+    }
 </style>

@@ -144,6 +144,7 @@ export default {
     }
     .imgWrap img {
         height: 250px;
+        width: 100vw;
     }
     .filmDetail {
         padding: 12px 15px;
