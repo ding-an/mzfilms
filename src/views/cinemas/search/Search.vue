@@ -47,7 +47,8 @@ export default {
         getInputValue (value) {
             if(value.length > 0) {  
                 this.searchCinemas = this.cinemas.filter(
-                cinema => cinema.name.indexOf(trim(value)) !== -1 || cinema.address.indexOf(trim(value)) !== -1);
+                cinema => cinema.name.toLowerCase().indexOf(trim(value).toLowerCase()) !== -1 
+                    || cinema.address.toLowerCase().indexOf(trim(value).toLowerCase()) !== -1);
             } else {
                 this.searchCinemas = [];
             }

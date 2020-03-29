@@ -22,6 +22,7 @@ export default {
     .navbar {
         height: 44px;
         line-height: 44px;
+        background-color: #fff;
         display: flex;
     }
     .left {

@@ -1,29 +1,46 @@
 <template>
     <div id="films">
-        <router-link to="/city">
-            <div class="currentCity">
-                {{currentCity.name}}
-                <img src="@/assets/img/click.png" />
-            </div>
-        </router-link>
+        <div class="topBar" v-show="isTop">
+            <nav-bar>
+                <router-link slot="left" to="/city">
+                    <div class="navLeft">
+                        {{currentCity.name}}
+                        <img src="@/assets/img/click.png" />
+                    </div>
+                </router-link>
+                <div slot="center">
+                    电影
+                </div>
+            </nav-bar>
+            <mid-tab-bar @changeNowTab='changeNowTab'/>
+        </div>
         
         <div class="bscroll" ref="bscroll">
             <div>
+                <router-link to="/city">
+                    <div class="currentCity">
+                        {{currentCity.name}}
+                        <img src="@/assets/img/click.png" />
+                    </div>
+                </router-link>
                 <swipper :imgs='bannerImg' v-show="isSwipperDisplay"/>
                 <mid-tab-bar @changeNowTab='changeNowTab'/>
                 <router-view/>
             </div>
         </div>
+        
         <main-tab-bar/>
     </div>
 </template>
 
 <script>
+import NavBar from '@/components/content/NavBar'
 import MainTabBar from '@/components/content/MainTabBar'
 import Swipper from './Swipper'
 import MidTabBar from './MidTabBar'
 
 import request from '@/network/request'
+import throttling from '@/utils/throttling'
 
 import BScroll from 'better-scroll'
 
@@ -32,12 +49,15 @@ import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'Films',
     components: {
+        NavBar,
         MainTabBar,
         Swipper,
         MidTabBar
     },
     data () {
         return {
+            //是否吸顶
+            isTop: false,
             bannerImg: [],
             nowTab: 'nowPlaying',
             //nowPlaying
@@ -51,16 +71,27 @@ export default {
         this.getFilms(this.pageNum1, 1, this.GET_FILMS);
         this.getBannerImg();
     },
-    updated () {
+    mounted () {
         //设置Bscroll
         this.scroll = new BScroll(this.$refs.bscroll, {
             probeType: 1,
             click: true,
-            startY: '192px',
+            scrollbar: true,
+            mouseWheel: true,
             pullUpLoad: {
                 threshold: 50
             }
         });
+        const scrollTop = throttling((p) => {
+            if(-p.y > 192) {
+                this.isTop = true
+            } else {
+                this.isTop = false
+            }
+        }, 100);
+        this.scroll.on('scroll', p => {
+            scrollTop(p)
+        })
         //上拉加载更多
         let num = this.$route.path.split('/').length;
         this.nowTab = this.$route.path.split('/')[num-1];
@@ -116,6 +147,19 @@ export default {
     #films {
         position: relative;
     }
+    .topBar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+    .navLeft {
+        color: #191a1b;
+    }
+    .navLeft img {
+        width: 6px;
+    }
     .currentCity {
         width: 50px;
         height: 30px;
@@ -136,5 +180,9 @@ export default {
         width:100%;
         height: calc(100vh - 49px);
         overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
     }
 </style>

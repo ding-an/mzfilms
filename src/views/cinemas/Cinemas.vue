@@ -14,11 +14,13 @@
         <!-- 切换栏 -->
         <mid-tab-bar :cinemas="cinemas" @isShow="toggleBgc" @toggleDistrict="getDistrictCinemas"></mid-tab-bar>
         <!-- 电影院列表 -->
-        <div :class="{ 'isDeep': isShow }">
-            <cinema-item 
-                v-for="cinema in districtCinemas" 
-                :cinema='cinema'
-                :key="cinema.cinemaId"></cinema-item>
+        <div class="bscroll" ref="bscroll">
+            <div :class="{ 'isDeep': isShow }">
+                <cinema-item 
+                    v-for="cinema in districtCinemas" 
+                    :cinema='cinema'
+                    :key="cinema.cinemaId"></cinema-item>
+            </div>
         </div>
         <main-tab-bar/>
     </div>
@@ -32,6 +34,7 @@ import MidTabBar from './MidTabBar'
 import CinemaItem from './CinemaItem'
 
 import request from '@/network/request'
+import BScroll from 'better-scroll'
 
 import { mapState } from 'vuex'
 
@@ -57,6 +60,13 @@ export default {
     },
     created () {
         this.getInitCinemas();
+    },
+    mounted () {
+        this.scroll = new BScroll(this.$refs.bscroll, {
+            probeType: 1,
+            click: true,
+            scrollbar: true
+        });
     },
     methods: {
         //跳转路由city选择界面
@@ -107,5 +117,10 @@ export default {
     }
     .isDeep {
         background-color: #ccc;
+    }
+    .bscroll{
+        width:100%;
+        height: calc(100vh - 141px);
+        overflow: hidden;
     }
 </style>

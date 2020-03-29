@@ -20,11 +20,10 @@
         </div>
         <!-- 电影列表 -->
         <div class="filmListWrap">
-            <div class="filmList" ref="filmlist">
-                <div v-for="(film, index) in films" :key="film.filmId" @click="changeCurrentFilmIndex(index)">
-                    <img class="filmImg" :class="{ 'filmIsActive': index === currentFilmIndex }" :src="film.poster" />
-                </div>
-            </div>
+            <swipper 
+                class="filmList" 
+                :films="films" 
+                @changeCurrentFilmIndex="changeCurrentFilmIndex"/>
             <img class="arrow" src="@/assets/img/arrow.png" />
         </div>
         <div class="filmInfo" v-if="currentFilm" @click="toFilmInfo">
@@ -35,7 +34,7 @@
             <div class="desc">
                 {{`${currentFilm.category} | ${currentFilm.runtime}分钟 
                     | ${currentFilm.director} 
-                    | ${currentFilm.actors.map(actor => actor.name).join(' ')}`}}
+                    | ${currentFilm.actors ? currentFilm.actors.map(actor => actor.name).join(' ') : ''}`}}
             </div>
         </div>
         <!-- 日期 -->
@@ -54,13 +53,16 @@
 <script>
 import NavBar from '@/components/content/NavBar'
 
+import swipper from './swipper'
+
 import request from '@/network/request'
 import formateDate from '@/utils/formateDate'
 
 export default {
     name: 'CinemaFilm',
     components: {
-        NavBar
+        NavBar,
+        swipper
     },
     data () {
         return {
@@ -118,9 +120,8 @@ export default {
         //改变当前激活的电影
         changeCurrentFilmIndex (index) {
             this.currentFilmIndex = index;
+            this.currentDateIndex = 0;
             this.getSchedule(this.currentFilm.showDate[0]);
-            this.$refs.filmlist.style.setProperty('--offset', document.body.clientWidth/2 - 45 - index*100 + 'px');
-
         },
         //改变当前激活的日期
         changeCurrentDateIndex (index) {
@@ -138,7 +139,7 @@ export default {
 
 <style scoped>
     #cinemaFilm {
-        --offset: calc(50% - 45px);
+        --offset: calc(10px);
     }
     .navBar img {
         width: 11px;
@@ -159,7 +160,7 @@ export default {
     }
     .filmListWrap {
         position: relative;
-        background-color: #ccc;
+        background-color: #FC9D99;
     }
     .filmList {
         width: 100%;
@@ -170,7 +171,8 @@ export default {
     }
     .filmList div {
         width: 90px;
-        margin-right: 10px;
+        height: 130px;
+        margin-left: 10px;
         position: relative;
     }
     .filmImg {
