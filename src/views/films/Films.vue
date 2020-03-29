@@ -68,7 +68,9 @@ export default {
         }
     },
     created () {
-        this.getFilms(this.pageNum1, 1, this.GET_FILMS);
+        this.$route.path === '/films/nowPlaying' ?
+        this.getFilms(this.pageNum1, 1, this.GET_FILMS) :
+        this.getFilms(this.pageNum1, 2, this.GET_FILMS);
         this.getBannerImg();
     },
     mounted () {
@@ -93,8 +95,6 @@ export default {
             scrollTop(p)
         })
         //上拉加载更多
-        let num = this.$route.path.split('/').length;
-        this.nowTab = this.$route.path.split('/')[num-1];
         this.nowTab === 'nowPlaying' ? 
         this.scrollToGetMoreFilms(this.pageNum1, 1) :
         this.scrollToGetMoreFilms(this.pageNum2, 2);
@@ -136,8 +136,21 @@ export default {
         },
         //切换TAB
         changeNowTab (value) {
+            //数据清除
+            this.GET_FILMS([])
+            //获取第一页数据
             value === 'nowPlaying' ? this.getFilms(this.pageNum1, 1, this.GET_FILMS) 
                     : this.getFilms(this.pageNum1, 2, this.GET_FILMS);
+            //切换TAB清除监听
+            this.scroll.off('pullingUp');
+            //清除吸顶
+            this.isTop = false;
+            //重新设置监听，上拉加载更多
+            let num = this.$route.path.split('/').length;
+            this.nowTab = this.$route.path.split('/')[num-1];
+            this.nowTab === 'nowPlaying' ? 
+            this.scrollToGetMoreFilms(this.pageNum1, 1) :
+            this.scrollToGetMoreFilms(this.pageNum2, 2);
         }
     }
 }
